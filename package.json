@@ -37,6 +37,7 @@
     "passport": "^0.2.1",
     "passport-http": "^0.2.2",
     "passport-local": "^1.0.0",
+    "passport-http-bearer": "^1.0.1",
     "sails-generate-entities": "^0.10.2"
   },
   "optionalDependencies": {
