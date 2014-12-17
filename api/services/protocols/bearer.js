@@ -15,6 +15,12 @@ module.exports = function (req, accessToken, next) {
 
         if (err) { return next(err); }
         if (!token) { return next(null, false); }
+        var tokenCreation = new Date(token.createdAt);
+        var expiresAt = new Date(token.createdAt);
+        expiresAt.setSeconds(tokenCreation.getSeconds() + sails.config.globals.oauth.tokenLife);
+        if (Date.parse(expiresAt) < Date.now()) {
+            return next('invalid_token; expired');
+        }
 
         User.findOne({id: token.userId}, function(err, user) {
             if (err) { return next(err); }
