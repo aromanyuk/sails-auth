@@ -149,11 +149,10 @@ passport.connect = function (req, query, profile, next) {
           if (err) {
             return next(err);
           }
-          sails.log('------------PassportData: ', passportData);
-            sails.log('------------PassportData: ', passport);
+          sails.log('------------PassportData: ', passportData.user.id, passport.user.id);
 
           // Fetch the user associated with the Passport
-          User.findOne(passport.user.id, next);
+          User.findOne(passportData.user.id, next);
         });
       }
     } else {
