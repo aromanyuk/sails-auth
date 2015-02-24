@@ -145,10 +145,12 @@ passport.connect = function (req, query, profile, next) {
         }
 
         // Save any updates to the Passport before moving on
-        passport.save(function (err, passport) {
+        passport.save(function (err, passportData) {
           if (err) {
             return next(err);
           }
+          sails.log('------------PassportData: ', passportData);
+            sails.log('------------PassportData: ', passport);
 
           // Fetch the user associated with the Passport
           User.findOne(passport.user.id, next);
